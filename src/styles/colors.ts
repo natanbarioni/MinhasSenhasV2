@@ -1,0 +1,14 @@
+export const PRIMARY = '#00b7ce';
+export const SECONDARY = '#CCEEF3';
+export const TERTIARY = '#5ECBDC';
+export const WHITE = '#FFF';
+export const BLACK = '#000';
+export const TEXT = '#666666';
+export const EDIT = '#145DA0';
+export const ADD = '#76B947';
+export const DELETE = '#DF362D';
+export const BACKGROUND_WHITE = '#F2F3F5';
+export const BUTTON = '#ffcc00';
+export const ALERT = '#F6A21E';
+export const BORDER = '#e3e3e3';
+export const LABEL = '#888d97';
