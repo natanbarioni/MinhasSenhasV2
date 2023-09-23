@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    height: 80,
+    //height: 80,
     width: '100%',
     backgroundColor: '#fff',
     flexDirection: 'row',
@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     paddingLeft: 22,
     marginBottom: 8,
-    borderRadius: 4
+    borderRadius: 4,
   },
   content: {
     flex: 1,
@@ -32,8 +32,14 @@ export const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold',
   },
+  textCopyPassword: {
+    color: '#888D97',
+    fontSize: 13,
+    marginTop: 5,
+    textDecorationLine: 'underline',
+  },
   button: {
-    height: 80,
+    height: '100%',
     width: 56,
     alignItems: 'center',
     justifyContent: 'center',

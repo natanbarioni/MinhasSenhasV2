@@ -1,28 +1,42 @@
-import { useState } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
+import { useState } from "react";
+import { Text, TouchableOpacity, View } from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
+import * as Clipboard from "expo-clipboard";
 
-import { styles } from './styles';
-import { Colors } from '../../styles';
+import { styles } from "./styles";
+import { Colors } from "../../styles";
+import { Toast } from "react-native-toast-message/lib/src/Toast";
 
 export type CardProps = {
   id: string;
   name: string;
   user: string;
   password: string;
-}
+};
 type Props = {
   data: CardProps;
   onPressDelete: () => void;
   onPressEdit: () => void;
-}
+};
 
 export function Card({ data, onPressDelete, onPressEdit }: Props) {
   const [passwordIsVisible, setPasswordIsVisible] = useState(false);
 
   function togglePasswordIsVisible() {
-    setPasswordIsVisible(prevState => !prevState);
+    setPasswordIsVisible((prevState) => !prevState);
   }
+
+  const handleCopy = (text) => {
+    const textToCopy = text;
+    Clipboard.setStringAsync(textToCopy);
+
+    Toast.show({
+      text1: "Senha copiada!",
+      type: "success",
+      autoHide: true,
+      visibilityTime: 2400,
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -34,45 +48,31 @@ export function Card({ data, onPressDelete, onPressEdit }: Props) {
         />
       </TouchableOpacity>
 
-      <View style={styles.content}>
-        <View>
-          <Text style={styles.title}>
-            {data.name}
-          </Text>
-
-          {
-            passwordIsVisible
-              ?
-              <Text style={styles.password}>
-                {data.password}
-              </Text>
-              :
-              <Text style={styles.email}>
-                {data.user}
-              </Text>
-          }
-        </View>
-      </View>
-
       <TouchableOpacity
-        style={styles.button}
-        onPress={onPressEdit}
+        onPress={() => handleCopy(data.password)}
+        style={styles.content}
+        disabled={!passwordIsVisible}
       >
-        <MaterialIcons
-          name="edit"
-          size={22}
-          color={Colors.EDIT}
-        />
+        <Text style={styles.title}>{data.name}</Text>
+
+        {passwordIsVisible ? (
+          <>
+            <Text style={styles.password}>{data.password}</Text>
+
+            <Text style={styles.textCopyPassword}>
+              Clique para copiar a senha
+            </Text>
+          </>
+        ) : (
+          <Text style={styles.email}>{data.user}</Text>
+        )}
       </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={onPressDelete}
-      >
-        <MaterialIcons
-          name="delete"
-          size={22}
-          color={Colors.DELETE}
-        />
+
+      <TouchableOpacity style={styles.button} onPress={onPressEdit}>
+        <MaterialIcons name="edit" size={22} color={Colors.EDIT} />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={onPressDelete}>
+        <MaterialIcons name="delete" size={22} color={Colors.DELETE} />
       </TouchableOpacity>
     </View>
   );
