@@ -53,18 +53,18 @@ export function Card({ data, onPressDelete, onPressEdit }: Props) {
         style={styles.content}
         disabled={!passwordIsVisible}
       >
-        <Text style={styles.title} numberOfLines={2}>{data.name}</Text>
+        <Text style={styles.title}>{data.name}</Text>
 
         {passwordIsVisible ? (
           <>
-            <Text style={styles.password} numberOfLines={2}>{data.password}</Text>
+            <Text style={styles.password}>{data.password}</Text>
 
             <Text style={styles.textCopyPassword}>
               Clique para copiar a senha
             </Text>
           </>
         ) : (
-          <Text style={styles.email} numberOfLines={2}>{data.user}</Text>
+          <Text style={styles.email}>{data.user}</Text>
         )}
       </TouchableOpacity>
 

@@ -30,6 +30,7 @@ export const styles = StyleSheet.create({
   },
   listContent: {
     padding: 24,
+    paddingBottom: 150,
   },
   footer: {
     width: "100%",
