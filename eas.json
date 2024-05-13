@@ -18,6 +18,7 @@
     },
     "production": {
       "android": {
+        "serviceAccountKeyPath": "./service-account-file.json",
         "image": "latest"
       },
       "ios": {
