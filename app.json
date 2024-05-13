@@ -37,7 +37,13 @@
       "config": {
         "googleMobileAdsAppId": "ca-app-pub-1575936907590081~3432849793"
       },
-      "versionCode": 8
-    }
+      "versionCode": 9
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b544e9c2-1b19-4c50-b9d4-e2fc82ac0056"
+      }
+    },
+    "owner": "natanfb2011"
   }
 }
