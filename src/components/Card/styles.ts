@@ -1,13 +1,13 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
-    //height: 80,
-    width: '100%',
-    backgroundColor: '#fff',
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderColor: '#E3E3E3',
+    maxHeight: 150,
+    width: "100%",
+    backgroundColor: "#fff",
+    flexDirection: "row",
+    alignItems: "center",
+    borderColor: "#E3E3E3",
     borderWidth: 1,
     paddingLeft: 22,
     marginBottom: 8,
@@ -20,30 +20,30 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: 15,
     lineHeight: 18,
-    color: '#3D434D',
-    fontWeight: 'bold',
+    color: "#3D434D",
+    fontWeight: "bold",
   },
   email: {
-    color: '#888D97',
+    color: "#888D97",
     fontSize: 13,
   },
   password: {
-    color: '#537FE7',
+    color: "#537FE7",
     fontSize: 15,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   textCopyPassword: {
-    color: '#888D97',
+    color: "#888D97",
     fontSize: 13,
     marginTop: 5,
-    textDecorationLine: 'underline',
+    textDecorationLine: "underline",
   },
   button: {
-    height: '100%',
+    height: "100%",
     width: 56,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     borderLeftWidth: 1,
-    borderLeftColor: '#E3E3E3',
-  }
+    borderLeftColor: "#E3E3E3",
+  },
 });
