@@ -36,8 +36,7 @@
       "package": "com.natanfb2011.MinhasSenhas",
       "config": {
         "googleMobileAdsAppId": "ca-app-pub-1575936907590081~3432849793"
-      },
-      "versionCode": 9
+      }
     },
     "extra": {
       "eas": {
