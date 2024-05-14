@@ -3,7 +3,7 @@ import { KeyboardAvoidingView, Platform, ScrollView, View } from "react-native";
 import Toast from "react-native-toast-message";
 import uuid from "react-native-uuid";
 import { useAsyncStorage } from "@react-native-async-storage/async-storage";
-import { AdMobBanner, AdMobInterstitial } from "expo-ads-admob";
+// import { AdMobBanner, AdMobInterstitial } from "expo-ads-admob";
 import { styles } from "./styles";
 
 import { Input } from "../../components/Input";
@@ -48,7 +48,7 @@ export function Form({ route }) {
         type: "success",
         text1: "Cadastrado com sucesso!",
       });
-      InterstitialAd();
+      // InterstitialAd();
       navigation.navigate("Home");
     } catch (error) {
       console.log(error);
@@ -80,7 +80,7 @@ export function Form({ route }) {
       type: "success",
       text1: "Editado com sucesso!",
     });
-    InterstitialAd();
+    // InterstitialAd();
     navigation.navigate("Home");
   }
 
@@ -99,19 +99,19 @@ export function Form({ route }) {
     }
   };
 
-  useEffect(() => {
-    async function loadAd() {
-      await AdMobInterstitial.setAdUnitID(
-        "ca-app-pub-1575936907590081/2327731233"
-      );
-    }
-    loadAd();
-  }, []);
+  // useEffect(() => {
+  //   async function loadAd() {
+  //     await AdMobInterstitial.setAdUnitID(
+  //       "ca-app-pub-1575936907590081/2327731233"
+  //     );
+  //   }
+  //   loadAd();
+  // }, []);
 
-  async function InterstitialAd() {
-    await AdMobInterstitial.requestAdAsync({ servePersonalizedAds: true });
-    await AdMobInterstitial.showAdAsync();
-  }
+  // async function InterstitialAd() {
+  //   await AdMobInterstitial.requestAdAsync({ servePersonalizedAds: true });
+  //   await AdMobInterstitial.showAdAsync();
+  // }
 
   return (
     <>
@@ -152,13 +152,13 @@ export function Form({ route }) {
           </ScrollView>
         </View>
       </KeyboardAvoidingView>
-      <View style={styles.admob}>
+      {/* <View style={styles.admob}>
         <AdMobBanner
           bannerSize="fullBanner"
           adUnitID="ca-app-pub-1575936907590081/5935724204"
           servePersonalizedAds={false}
         />
-      </View>
+      </View> */}
     </>
   );
 }
