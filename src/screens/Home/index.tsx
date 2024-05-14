@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 
-import { AdMobBanner } from "expo-ads-admob";
+// import { AdMobBanner } from "expo-ads-admob";
 
 import { FlatList, Text, View, Alert } from "react-native";
 import { useAsyncStorage } from "@react-native-async-storage/async-storage";
@@ -120,12 +120,12 @@ export function Home({ navigation }) {
         </View>
       )}
 
-      <AdMobBanner
+      {/* <AdMobBanner
         bannerSize="fullBanner"
         adUnitID="ca-app-pub-1575936907590081/5935724204" // Test ID, Replace with your-admob-unit-id
         servePersonalizedAds={false}
         onDidFailToReceiveAdWithError={(error) => console.log(error)} // true or false
-      />
+      /> */}
     </View>
   );
 }
