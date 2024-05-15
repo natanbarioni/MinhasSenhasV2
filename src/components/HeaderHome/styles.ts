@@ -2,7 +2,7 @@ import { StyleSheet, StatusBar } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    paddingTop: StatusBar.currentHeight + 8,
+    paddingTop: StatusBar.currentHeight + 9,
     paddingBottom: 24,
     width: '100%',
     backgroundColor: '#000',
