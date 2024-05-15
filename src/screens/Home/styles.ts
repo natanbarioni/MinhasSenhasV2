@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: 32,
+    marginTop: 18,
     paddingHorizontal: 24,
   },
   listCount: {
@@ -29,7 +29,8 @@ export const styles = StyleSheet.create({
     width: "100%",
   },
   listContent: {
-    padding: 24,
+    paddingHorizontal: 24,
+    paddingBottom: 24
   },
   footer: {
     width: "100%",
@@ -47,4 +48,10 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  containerSearch: {
+    width: '100%',
+    marginTop: 24,
+    paddingHorizontal: 24,
+    paddingBottom: 24
+  }
 });
