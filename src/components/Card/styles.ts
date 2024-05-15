@@ -2,7 +2,6 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
-    maxHeight: 150,
     width: "100%",
     backgroundColor: "#fff",
     flexDirection: "row",
@@ -39,11 +38,8 @@ export const styles = StyleSheet.create({
     textDecorationLine: "underline",
   },
   button: {
-    height: "100%",
     width: 56,
     alignItems: "center",
     justifyContent: "center",
-    borderLeftWidth: 1,
-    borderLeftColor: "#E3E3E3",
   },
 });
