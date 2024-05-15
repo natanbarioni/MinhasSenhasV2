@@ -1,8 +1,8 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 // import { AdMobBanner } from "expo-ads-admob";
 
-import { FlatList, Text, View, Alert } from "react-native";
+import { FlatList, Text, View, Alert, Keyboard } from "react-native";
 import { useAsyncStorage } from "@react-native-async-storage/async-storage";
 import { MaterialIcons } from "@expo/vector-icons";
 
@@ -12,18 +12,38 @@ import { useFocusEffect } from "@react-navigation/native";
 
 import { styles } from "./styles";
 import { Button } from "../../components/Button";
+import { Search } from "../../components/Search";
 
 export function Home({ navigation }) {
   const [data, setData] = useState<CardProps[]>([]);
+  const [searchText, setSearchText] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
 
   const { getItem, setItem, removeItem } = useAsyncStorage(
     "@savepass:passwords"
   );
 
+  const handlerSearch = (text) => {
+    setSearchText(text);
+
+    if (text) {
+      const newData = data.filter(item => {
+        const { id, ...rest } = item;
+        return Object.values(rest).some(val =>
+          String(val).toLowerCase().includes(text.toLowerCase())
+        );
+      });
+      setFilteredData(newData);
+    } else {
+      setFilteredData(data);
+    }
+  };
+
   async function handleFetchData() {
     const response = await getItem();
     const data = response ? JSON.parse(response) : [];
     setData(data);
+    setFilteredData(data);
   }
 
   async function handleEdit(id: string) {
@@ -92,11 +112,25 @@ export function Home({ navigation }) {
         <Text style={styles.listCount}>{`${data.length} ao total`}</Text>
       </View>
 
+      <View style={styles.containerSearch}>
+        {data.length > 1 && (
+          <Search
+            value={searchText}
+            onChangeText={(value) => handlerSearch(value)}
+            onPressSearch={() => {
+              handlerSearch(searchText);
+              Keyboard.dismiss();
+            }}
+          />
+        )}
+      </View>
+
       <FlatList
-        data={data}
+        data={filteredData}
         keyExtractor={(item) => item.id}
         style={styles.list}
         contentContainerStyle={styles.listContent}
+        overScrollMode="never"
         ListEmptyComponent={
           <View style={styles.boxListEmpty}>
             <MaterialIcons name="list" size={35} color="#888D99" />

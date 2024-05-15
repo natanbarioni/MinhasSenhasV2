@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, StatusBar } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
+    paddingTop: StatusBar.currentHeight + 8,
+    paddingBottom: 24,
     width: '100%',
-    height: 178,
     backgroundColor: '#000',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -21,7 +22,8 @@ export const styles = StyleSheet.create({
   },
   user: {
     flex: 1,
-    marginLeft: 12
+    marginLeft: 12,
+    marginRight: 12,
   },
   title: {
     color: '#666666',
@@ -34,7 +36,6 @@ export const styles = StyleSheet.create({
   avatar: {
     width: 56,
     height: 56,
-    borderRadius: 5,
   }
 
 });
