@@ -8,7 +8,6 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     borderColor: "#E3E3E3",
     borderWidth: 1,
-    paddingLeft: 22,
     marginBottom: 8,
     borderRadius: 4,
   },
@@ -39,6 +38,14 @@ export const styles = StyleSheet.create({
   },
   button: {
     width: 56,
+    height: 40,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  buttonEye: {
+    paddingLeft: 22,
+    paddingBottom: 22,
+    paddingTop: 22,
     alignItems: "center",
     justifyContent: "center",
   },

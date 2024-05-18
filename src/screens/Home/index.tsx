@@ -64,7 +64,7 @@ export function Home({ navigation }) {
 
           const data = previousData.filter((item: CardProps) => item.id !== id);
           setItem(JSON.stringify(data));
-          setData(data);
+          setFilteredData(data);
         },
         style: "cancel",
       },
@@ -83,7 +83,7 @@ export function Home({ navigation }) {
         text: "Sim",
         onPress: async () => {
           await removeItem();
-          setData([]);
+          setFilteredData([]);
         },
         style: "cancel",
       },

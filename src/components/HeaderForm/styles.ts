@@ -24,9 +24,14 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     flex: 1,
     textAlign: 'center',
-    marginLeft: -32
   },
   button: {
-    zIndex: 100
+    zIndex: 999,
+    padding: 24,
+    paddingTop: getStatusBarHeight() + 24,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    left: 0,
   }
 });
