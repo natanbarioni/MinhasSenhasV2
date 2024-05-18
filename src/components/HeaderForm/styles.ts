@@ -26,6 +26,7 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
   },
   button: {
+    zIndex: 999,
     padding: 24,
     paddingTop: getStatusBarHeight() + 24,
     justifyContent: 'center',
