@@ -40,7 +40,7 @@ export function Card({ data, onPressDelete, onPressEdit }: Props) {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={togglePasswordIsVisible}>
+      <TouchableOpacity style={styles.buttonEye} onPress={togglePasswordIsVisible}>
         <MaterialIcons
           name={passwordIsVisible ? "visibility" : "visibility-off"}
           size={22}
