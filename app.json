@@ -14,7 +14,7 @@
     ],
     "name": "Minhas Senhas",
     "slug": "MinhasSenhas",
-    "version": "1.4.1",
+    "version": "1.4.2",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
@@ -31,7 +31,8 @@
       },
       "permissions": [
         "USE_FINGERPRINT",
-        "USE_BIOMETRIC"
+        "USE_BIOMETRIC",
+        "com.android.vending.BILLING"
       ],
       "package": "com.natanfb2011.MinhasSenhas",
       "config": {
