@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 
 // import { AdMobBanner } from "expo-ads-admob";
 
-import { FlatList, Text, View, Alert, Keyboard } from "react-native";
+import { FlatList, Text, View, Alert, Keyboard, Platform } from "react-native";
 import { useAsyncStorage } from "@react-native-async-storage/async-storage";
 import { MaterialIcons } from "@expo/vector-icons";
 
@@ -13,11 +13,35 @@ import { useFocusEffect } from "@react-navigation/native";
 import { styles } from "./styles";
 import { Button } from "../../components/Button";
 import { Search } from "../../components/Search";
+import { ButtonOptions } from "../../components/ButtonOptions";
+import Purchases, { LOG_LEVEL, PurchasesOffering } from "react-native-purchases";
 
 export function Home({ navigation }) {
   const [data, setData] = useState<CardProps[]>([]);
   const [searchText, setSearchText] = useState("");
   const [filteredData, setFilteredData] = useState([]);
+  const APIKeys = {
+    google: "goog_xXnDNbaXhhjFpYpTnsjXdxFzpKZ",
+  };
+  const [currentOffering, setCurrentOffering] =
+      useState<PurchasesOffering | null>(null);
+  
+    useEffect(() => {
+      const setup = async () => {
+        if (Platform.OS == "android") {
+          await Purchases.configure({ apiKey: APIKeys.google });
+        }
+  
+        const offerings = await Purchases.getOfferings();
+        setCurrentOffering(offerings.current);
+      };
+  
+      Purchases.setLogLevel(LOG_LEVEL.VERBOSE);
+  
+      setup().catch(console.log);
+    }, []);
+console.log(currentOffering)
+
 
   const { getItem, setItem, removeItem } = useAsyncStorage(
     "@savepass:passwords"
@@ -27,9 +51,9 @@ export function Home({ navigation }) {
     setSearchText(text);
 
     if (text) {
-      const newData = data.filter(item => {
+      const newData = data.filter((item) => {
         const { id, ...rest } = item;
-        return Object.values(rest).some(val =>
+        return Object.values(rest).some((val) =>
           String(val).toLowerCase().includes(text.toLowerCase())
         );
       });
@@ -153,6 +177,8 @@ export function Home({ navigation }) {
           <Button onPress={() => handleRemoveAll()} title="Limpar lista" />
         </View>
       )}
+
+      <ButtonOptions />
 
       {/* <AdMobBanner
         bannerSize="fullBanner"
