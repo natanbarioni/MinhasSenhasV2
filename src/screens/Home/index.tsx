@@ -13,7 +13,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import { styles } from "./styles";
 import { Button } from "../../components/Button";
 import { Search } from "../../components/Search";
-import { ButtonOptions } from "../../components/ButtonOptions";
+// import { ButtonOptions } from "../../components/ButtonOptions";
 import Purchases, { LOG_LEVEL, PurchasesOffering } from "react-native-purchases";
 
 export function Home({ navigation }) {
@@ -33,14 +33,15 @@ export function Home({ navigation }) {
         }
   
         const offerings = await Purchases.getOfferings();
+        alert(offerings)
         setCurrentOffering(offerings.current);
       };
   
       Purchases.setLogLevel(LOG_LEVEL.VERBOSE);
   
-      setup().catch(console.log);
+      setup()
     }, []);
-console.log(currentOffering)
+
 
 
   const { getItem, setItem, removeItem } = useAsyncStorage(
@@ -178,7 +179,7 @@ console.log(currentOffering)
         </View>
       )}
 
-      <ButtonOptions />
+      {/* <ButtonOptions /> */}
 
       {/* <AdMobBanner
         bannerSize="fullBanner"
