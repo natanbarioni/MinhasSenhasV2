@@ -13,37 +13,18 @@ import { useFocusEffect } from "@react-navigation/native";
 import { styles } from "./styles";
 import { Button } from "../../components/Button";
 import { Search } from "../../components/Search";
+import {
+  BannerAd,
+  BannerAdSize,
+  TestIds,
+  useForeground,
+} from "react-native-google-mobile-ads";
 // import { ButtonOptions } from "../../components/ButtonOptions";
-import Purchases, { LOG_LEVEL, PurchasesOffering } from "react-native-purchases";
 
 export function Home({ navigation }) {
   const [data, setData] = useState<CardProps[]>([]);
   const [searchText, setSearchText] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-  const APIKeys = {
-    google: "goog_xXnDNbaXhhjFpYpTnsjXdxFzpKZ",
-  };
-  const [currentOffering, setCurrentOffering] =
-      useState<PurchasesOffering | null>(null);
-  
-    useEffect(() => {
-      const setup = async () => {
-        if (Platform.OS == "android") {
-          await Purchases.configure({ apiKey: APIKeys.google });
-        }
-  
-        const offerings = await Purchases.getOfferings();
-        alert(offerings)
-        setCurrentOffering(offerings.current);
-      };
-  
-      Purchases.setLogLevel(LOG_LEVEL.VERBOSE);
-  
-      setup()
-    }, []);
-
-
-
   const { getItem, setItem, removeItem } = useAsyncStorage(
     "@savepass:passwords"
   );
@@ -187,6 +168,10 @@ export function Home({ navigation }) {
         servePersonalizedAds={false}
         onDidFailToReceiveAdWithError={(error) => console.log(error)} // true or false
       /> */}
+      <BannerAd
+        unitId="ca-app-pub-1575936907590081/5935724204"
+        size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+      />
     </View>
   );
 }
