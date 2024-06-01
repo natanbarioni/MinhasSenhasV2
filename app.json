@@ -31,8 +31,7 @@
       },
       "permissions": [
         "USE_FINGERPRINT",
-        "USE_BIOMETRIC",
-        "com.android.vending.BILLING"
+        "USE_BIOMETRIC"
       ],
       "package": "com.natanfb2011.MinhasSenhas"
     },
