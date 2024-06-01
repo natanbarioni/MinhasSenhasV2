@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { KeyboardAvoidingView, Platform, ScrollView, View } from "react-native";
 import Toast from "react-native-toast-message";
 import uuid from "react-native-uuid";
 import { useAsyncStorage } from "@react-native-async-storage/async-storage";
-// import { AdMobBanner, AdMobInterstitial } from "expo-ads-admob";
 import { styles } from "./styles";
 
 import { Input } from "../../components/Input";
@@ -11,15 +10,25 @@ import { Button } from "../../components/Button";
 import { HeaderForm } from "../../components/HeaderForm";
 import { useNavigation } from "@react-navigation/native";
 import { CardProps } from "../../components/Card";
+import {
+  AdEventType,
+  BannerAd,
+  BannerAdSize,
+  InterstitialAd,
+} from "react-native-google-mobile-ads";
 
 export function Form({ route }) {
   const navigation = useNavigation();
   const item: CardProps = route.params.item;
 
-  const [name, setName] = useState(item?.name || '');
-  const [user, setUser] = useState(item?.user || '');
-  const [password, setPassword] = useState(item?.password || '');
+  const [name, setName] = useState(item?.name || "");
+  const [user, setUser] = useState(item?.user || "");
+  const [password, setPassword] = useState(item?.password || "");
   const [passwordIsVisible, setPasswordIsVisible] = useState(false);
+  const interstitial = InterstitialAd.createForAdRequest(
+    "ca-app-pub-1575936907590081/2327731233",
+    { requestNonPersonalizedAdsOnly: true }
+  );
 
   function togglePasswordIsVisible() {
     setPasswordIsVisible((prevState) => !prevState);
@@ -48,8 +57,8 @@ export function Form({ route }) {
         type: "success",
         text1: "Cadastrado com sucesso!",
       });
-      // InterstitialAd();
       navigation.navigate("Home");
+      showInterstitial();
     } catch (error) {
       console.log(error);
 
@@ -80,8 +89,8 @@ export function Form({ route }) {
       type: "success",
       text1: "Editado com sucesso!",
     });
-    // InterstitialAd();
     navigation.navigate("Home");
+    showInterstitial();
   }
 
   const validate = () => {
@@ -99,19 +108,12 @@ export function Form({ route }) {
     }
   };
 
-  // useEffect(() => {
-  //   async function loadAd() {
-  //     await AdMobInterstitial.setAdUnitID(
-  //       "ca-app-pub-1575936907590081/2327731233"
-  //     );
-  //   }
-  //   loadAd();
-  // }, []);
-
-  // async function InterstitialAd() {
-  //   await AdMobInterstitial.requestAdAsync({ servePersonalizedAds: true });
-  //   await AdMobInterstitial.showAdAsync();
-  // }
+  function showInterstitial() {
+    interstitial.addAdEventListener(AdEventType.LOADED, () => {
+      interstitial.show()
+    });
+    interstitial.load();
+  }
 
   return (
     <>
@@ -152,13 +154,11 @@ export function Form({ route }) {
           </ScrollView>
         </View>
       </KeyboardAvoidingView>
-      {/* <View style={styles.admob}>
-        <AdMobBanner
-          bannerSize="fullBanner"
-          adUnitID="ca-app-pub-1575936907590081/5935724204"
-          servePersonalizedAds={false}
-        />
-      </View> */}
+
+      <BannerAd
+        unitId="ca-app-pub-1575936907590081/5935724204"
+        size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+      />
     </>
   );
 }
