@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 
 // import { AdMobBanner } from "expo-ads-admob";
 
-import { FlatList, Text, View, Alert, Keyboard } from "react-native";
+import { FlatList, Text, View, Alert, Keyboard, Platform } from "react-native";
 import { useAsyncStorage } from "@react-native-async-storage/async-storage";
 import { MaterialIcons } from "@expo/vector-icons";
 
@@ -13,12 +13,18 @@ import { useFocusEffect } from "@react-navigation/native";
 import { styles } from "./styles";
 import { Button } from "../../components/Button";
 import { Search } from "../../components/Search";
+import {
+  BannerAd,
+  BannerAdSize,
+  TestIds,
+  useForeground,
+} from "react-native-google-mobile-ads";
+// import { ButtonOptions } from "../../components/ButtonOptions";
 
 export function Home({ navigation }) {
   const [data, setData] = useState<CardProps[]>([]);
   const [searchText, setSearchText] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-
   const { getItem, setItem, removeItem } = useAsyncStorage(
     "@savepass:passwords"
   );
@@ -27,9 +33,9 @@ export function Home({ navigation }) {
     setSearchText(text);
 
     if (text) {
-      const newData = data.filter(item => {
+      const newData = data.filter((item) => {
         const { id, ...rest } = item;
-        return Object.values(rest).some(val =>
+        return Object.values(rest).some((val) =>
           String(val).toLowerCase().includes(text.toLowerCase())
         );
       });
@@ -154,12 +160,18 @@ export function Home({ navigation }) {
         </View>
       )}
 
+      {/* <ButtonOptions /> */}
+
       {/* <AdMobBanner
         bannerSize="fullBanner"
         adUnitID="ca-app-pub-1575936907590081/5935724204" // Test ID, Replace with your-admob-unit-id
         servePersonalizedAds={false}
         onDidFailToReceiveAdWithError={(error) => console.log(error)} // true or false
       /> */}
+      <BannerAd
+        unitId="ca-app-pub-1575936907590081/5935724204"
+        size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+      />
     </View>
   );
 }
