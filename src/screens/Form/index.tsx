@@ -58,7 +58,7 @@ export function Form({ route }) {
         text1: "Cadastrado com sucesso!",
       });
       navigation.navigate("Home");
-      showInterstitial();
+      // showInterstitial();
     } catch (error) {
       console.log(error);
 
@@ -90,7 +90,7 @@ export function Form({ route }) {
       text1: "Editado com sucesso!",
     });
     navigation.navigate("Home");
-    showInterstitial();
+    // showInterstitial();
   }
 
   const validate = () => {
@@ -108,12 +108,12 @@ export function Form({ route }) {
     }
   };
 
-  function showInterstitial() {
-    interstitial.addAdEventListener(AdEventType.LOADED, () => {
-      interstitial.show()
-    });
-    interstitial.load();
-  }
+  // function showInterstitial() {
+  //   interstitial.addAdEventListener(AdEventType.LOADED, () => {
+  //     interstitial.show()
+  //   });
+  //   interstitial.load();
+  // }
 
   return (
     <>
