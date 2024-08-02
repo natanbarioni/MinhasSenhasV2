@@ -14,7 +14,7 @@
     ],
     "name": "Minhas Senhas",
     "slug": "MinhasSenhas",
-    "version": "1.5.1",
+    "version": "1.5.2",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
