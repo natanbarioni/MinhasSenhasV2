@@ -6,7 +6,7 @@
         {
           "android": {
             "compileSdkVersion": 34,
-            "targetSdkVersion": 33,
+            "targetSdkVersion": 34,
             "buildToolsVersion": "33.0.0"
           }
         }
